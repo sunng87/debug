@@ -1,4 +1,4 @@
-(defproject info.sunng/debug "0.1.1-SNAPSHOT"
+(defproject info.sunng/debug "0.1.1"
   :description "Utility for clojure debug log"
   :url "http://github.com/sunng87/debug"
   :license {:name "Eclipse Public License"
