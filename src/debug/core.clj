@@ -24,7 +24,7 @@
   (.format (SimpleDateFormat. "hh:mm:ss.SSS") (Date.)))
 
 (defn pprint [current-ns & args]
-  (apply println (current-time) current-ns args))
+  (println (current-time) current-ns (apply format args)))
 
 (defn match-index-of [v m]
   (loop [i 0]
