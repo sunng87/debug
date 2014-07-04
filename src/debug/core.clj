@@ -4,7 +4,8 @@
 
 (def enabled-namespaces
   (if-let [nss (System/getenv "DEBUG")]
-    (clojure.string/split nss  #",")
+    (map #(clojure.string/replace % "*" ".*?")
+         (clojure.string/split nss  #","))
     []))
 
 (def colors
@@ -25,9 +26,18 @@
 (defn pprint [current-ns & args]
   (apply println (current-time) current-ns args))
 
+(defn match-index-of [v m]
+  (loop [i 0]
+    (if (< i (count v))
+      (let [p (nth v i)]
+        (if (re-matches (re-pattern p) m)
+          i
+          (recur (inc i))))
+      -1)))
+
 (defmacro debug [& args]
   (let [current-ns (str (ns-name *ns*))
-        idx (.indexOf enabled-namespaces current-ns)]
+        idx (match-index-of enabled-namespaces current-ns)]
     (when (> idx -1)
       (let [color (nth colors (mod idx (count colors)))]
        `(pprint (wrap-color-text ~color ~current-ns) ~@args)))))
