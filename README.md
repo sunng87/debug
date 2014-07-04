@@ -10,7 +10,7 @@ A Clojure clone of node [debug](https://github.com/visionmedia/debug) utility.
 
 ### Code
 
-```
+```clojure
 (ns user)
 (require '[debug.core :refer [debug]])
 
