@@ -14,10 +14,12 @@ A Clojure clone of node [debug](https://github.com/visionmedia/debug) utility.
 (ns user)
 (require '[debug.core :refer [debug]])
 
-(debug "anything you would like to print...")
+(debug "anything you would like to print... %s" "format string supported")
 ```
 
-Run the code with environment `DEBUG=user` so you can see the log.
+Run the code with environment `DEBUG` set to comma separated
+namespaces, e.g. `DEBUG=user`, so you can see the log. Wildcard `*` is
+supported for namespace pattern.
 
 ## License
 
